@@ -7,7 +7,7 @@ void main() {
   runApp(MaterialApp(
     home: Scaffold(
       body: IconButton(
-          onPressed: () {showMyAlertDialog(context);},
+          onPressed: () {showMyAlertDialog();},
           icon: Icon(
             Icons.currency_bitcoin,
             color: Colors.white,

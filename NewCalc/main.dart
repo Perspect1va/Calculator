@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'ButtonForSwitch.dart';
-
 void main() {
   debugPaintSizeEnabled = false;
   runApp(const Calculator2());
@@ -40,10 +38,12 @@ class _Calculator2State extends State<Calculator2> {
       appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.black,
-          title: const Text('Конвертер', style: TextStyle(color: Colors.white))),
+          title:
+              const Text('Конвертер', style: TextStyle(color: Colors.white))),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 5),
         child: Column(
+
             /// Кнопочки в калькуляторе
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.end,
@@ -56,17 +56,50 @@ class _Calculator2State extends State<Calculator2> {
                       Expanded(
                           flex: 1,
                           child: IconButton(
-                              onPressed: () {showMyAlertDialog(context);},
-                              icon: const Icon(
-                                Icons.currency_bitcoin,
-                                color: Colors.white,
-                                size: 35,
-                              ))),
+                            icon: const Icon(Icons.currency_bitcoin,
+                                color: Colors.white, size: 35),
+                            onPressed: () {
+                              showModalBottomSheet<void>(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Container(
+                                    height: 200,
+                                    color: Colors.grey,
+                                    child: Column(
+                                      children: [
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            const Text('Валюта'),
+                                            Row(
+                                              children: <Widget>[
+                                                TextButton(
+                                                  child: const Text(
+                                                      'Close BottomSheet',
+                                                      style: TextStyle(
+                                                          fontSize: 30)),
+                                                  onPressed: () =>
+                                                      Navigator.pop(context),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          )),
                       Expanded(
                           flex: 3,
                           child: Text(
                             '$text',
-                            style: const TextStyle(color: Colors.white, fontSize: 30),
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 30),
                           ))
                     ],
                   )),
